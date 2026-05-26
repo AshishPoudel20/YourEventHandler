@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "YourEventHandler",
+    "slug": "ashishpoudel-s1552923-a3",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#000000"
+    },
+    "android": {
+      "package": "com.ashishpoudel.s1552923.a3"
+    },
+    "ios": {
+      "bundleIdentifier": "com.ashishpoudel.s1552923.a3"
+    }
+  }
+}
