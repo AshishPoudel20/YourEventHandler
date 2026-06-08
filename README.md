@@ -1,70 +1,59 @@
-# YourEventHandler — BIT351 Assessment 3 Part B
+# YourEventHandler
 
-**Student:** Ashish Poudel — S1552923
-**Package:** ashishpoudel_S1552923_A3
+A React Native (Expo) mobile app for managing events, participants, and attendance. Create events, track who's attending, and mark attendance — all backed by a local SQLite database that works fully offline.
 
-A React Native (Expo) mobile app for managing events, participants, and attendance — built per the Part A design.
+<!-- Add a screenshot or short GIF here. Drop the file in the repo (e.g. assets/demo.gif) and link it: ![YourEventHandler demo](assets/demo.gif) -->
 
-## How to run
+## What it does
 
-You need Node.js installed. Then, in this folder:
+- **Event management** — create, edit, and delete events, with the full list stored locally.
+- **Participants and attendance** — add participants to an event and toggle their attendance with a tappable checkbox.
+- **Member login** — sign in as a member to see and interact with events.
+- **Offline-first** — everything runs on a local SQLite database, so the app works with no network and nothing leaves the device.
 
-```bash
-npm install
-npx expo start
-```
+## Tech stack
+
+- React Native (Expo)
+- SQLite via `expo-sqlite`
+- React Navigation (native stack)
+- React Hooks (`useState`, `useEffect`, `useContext`) for state and shared context
+
+## Running it locally
+
+You'll need Node.js installed. Then, in this folder:
+
+    npm install
+    npx expo start
 
 Once the dev server is running:
-- Scan the QR code with the **Expo Go** app on your phone (Android/iOS), **or**
-- Press `a` to open in an Android emulator, `i` for iOS simulator, `w` for web.
 
-## Sample login
+- Scan the QR code with the **Expo Go** app on your phone (Android or iOS), or
+- Press `a` for an Android emulator, `i` for the iOS simulator, or `w` for web.
 
-The Members table is seeded automatically. Use any of these usernames at the Member Login screen (no password):
-- `alice`
-- `bob`
-- `charlie`
-- `diana`
-
-Sample events (`Tech Meetup`, `React Workshop`) are also seeded so the app is testable on first launch.
-
-## Features mapped to the rubric
-
-| Requirement | Implementation |
-|---|---|
-| Local database | SQLite via `expo-sqlite` (`src/db/database.js`) |
-| Input screen | `CreateEventScreen` and `EditEventScreen` |
-| List screens (≥3) | `EventList`, `ManageEvents`, `Participants` |
-| CRUD on Events | Create/Read/Update/Delete in `database.js` and used across screens |
-| Hooks: state, effect, context | `useState`, `useEffect`, `useContext` (see `App.js`, `AppContext.js`, every screen) |
-| Navigation | React Navigation native stack (`App.js`) |
-| Specialized component | Attendance checkbox toggle in `ParticipantsScreen` |
+The Members table and a couple of sample events are seeded automatically, so the app is usable on first launch. At the Member Login screen, sign in with any of these usernames (no password): `alice`, `bob`, `charlie`, or `diana`.
 
 ## Project structure
 
-```
-ashishpoudel_S1552923_A3/
-├── App.js                    # Root: navigation + context + DB init
-├── app.json                  # Expo config (package: com.ashishpoudel.s1552923.a3)
-├── package.json
-├── babel.config.js
-└── src/
-    ├── styles.js             # Tiny shared style sheet (minimal CSS)
-    ├── context/
-    │   └── AppContext.js     # useContext for current member
-    ├── db/
-    │   └── database.js       # SQLite + CRUD functions
-    └── screens/
-        ├── HomeScreen.js
-        ├── MemberLoginScreen.js
-        ├── EventListScreen.js
-        ├── AdminConsoleScreen.js
-        ├── CreateEventScreen.js
-        ├── ManageEventsScreen.js
-        ├── EditEventScreen.js
-        └── ParticipantsScreen.js
-```
+    .
+    ├── App.js                # Root: navigation, context, and DB init
+    ├── app.json              # Expo config
+    ├── package.json
+    └── src/
+        ├── styles.js         # Shared styles
+        ├── context/
+        │   └── AppContext.js # Current-member context
+        ├── db/
+        │   └── database.js   # SQLite setup and CRUD functions
+        └── screens/
+            ├── HomeScreen.js
+            ├── MemberLoginScreen.js
+            ├── EventListScreen.js
+            ├── AdminConsoleScreen.js
+            ├── CreateEventScreen.js
+            ├── ManageEventsScreen.js
+            ├── EditEventScreen.js
+            └── ParticipantsScreen.js
 
-## ICT Professional Ethics — sample data
+## Notes
 
-All seeded names/emails are fictional placeholders (alice/bob/charlie/diana @example.com). No real personal data is used. The database is local-only — nothing is transmitted off-device.
+All seeded data is fictional (alice / bob / charlie / diana at example.com) — no real personal information is used, and the database is local-only.
