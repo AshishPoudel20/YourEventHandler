@@ -7,7 +7,6 @@ import { StatusBar } from 'expo-status-bar';
 
 import { AppProvider } from './src/context/AppContext';
 import { initDB } from './src/db/database';
-
 import HomeScreen from './src/screens/HomeScreen';
 import MemberLoginScreen from './src/screens/MemberLoginScreen';
 import EventListScreen from './src/screens/EventListScreen';

@@ -80,6 +80,29 @@ export async function getMemberByName(name) {
   return db.getFirstAsync('SELECT * FROM members WHERE name=?', [name.trim().toLowerCase()]);
 }
 
+export async function getMemberByEmail(email) {
+  const db = await getDB();
+  return db.getFirstAsync('SELECT * FROM members WHERE email=?', [email.trim().toLowerCase()]);
+}
+
+export async function createMember(name, email) {
+  const db = await getDB();
+  const baseName = name.trim().toLowerCase() || 'member';
+  const normalizedEmail = email.trim().toLowerCase();
+
+  let candidateName = baseName;
+  let attempt = 1;
+  while (true) {
+    const existing = await db.getFirstAsync('SELECT memberid FROM members WHERE name=?', [candidateName]);
+    if (!existing) break;
+    attempt += 1;
+    candidateName = `${baseName}${attempt}`;
+  }
+
+  await db.runAsync('INSERT INTO members (name, email) VALUES (?, ?)', [candidateName, normalizedEmail]);
+  return db.getFirstAsync('SELECT * FROM members WHERE email=?', [normalizedEmail]);
+}
+
 // PARTICIPANT operations
 export async function isRegistered(memberid, eventId) {
   const db = await getDB();
